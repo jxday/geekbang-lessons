@@ -3,6 +3,7 @@ package org.geekbang.thinkinspring.ioc.overview.dependencyInject;
 import org.geekbang.thinkinspring.ioc.overview.domain.User;
 import org.geekbang.thinkinspring.ioc.overview.properties.UserProperties;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -12,6 +13,13 @@ import org.springframework.core.env.Environment;
  *          自定义bean
  *          容器内建依赖
  *          容器内建bean对象
+ *          
+ *          
+ *  AbstractApplicationContext实现了ConfigurableApplicationContext接口。
+ *
+ *  AbstractApplicationContext.getBean()调用了ConfigurableApplicationContext.getBeanFactory().getBean().
+ *
+ *  ConfigurableApplicationContext.getBeanFactory()返回的就是DefaultListableBeanFactory。也就是依赖注入的BeanFactory对象。          
  *
  * @author cty
  * @ClassName DependenctInjectDemo
@@ -73,7 +81,11 @@ public class DependenctInjectDemo {
      * @Date: 1/27/21
     **/
     public static void whoIsIoCContainer(UserProperties users,BeanFactory beanFactory){
-        new User();
+        
+        //ClassPathXmlApplicationContext    ->      AbstractApplicationContext     ->|   ConfigurableApplicationContext     ->  BeanFactory
+        //ConfigurableApplicationContext#getBeanFactory()   返回的就是DefaultListableBeanFactory，依赖注入的BeanFactory
+        //AbstractApplicationContext#getBean()   return getBeanFactory().getBean();
+        
         //为什么表达式为false
         System.err.println(users.getBeanFactory() == beanFactory);
         
