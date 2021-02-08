@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>IoC-container-overview</module>
+        <module>spring_bean</module>
     </modules>
 
     <properties>

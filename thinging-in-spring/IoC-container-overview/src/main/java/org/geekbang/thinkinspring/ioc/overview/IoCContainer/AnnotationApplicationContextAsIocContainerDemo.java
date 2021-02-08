@@ -33,7 +33,7 @@ public class AnnotationApplicationContextAsIocContainerDemo {
         applicationContext.register(AnnotationApplicationContextAsIocContainerDemo.class);
         //启动应用上下文
         applicationContext.refresh();
-        lookupCollectionByType(applicationContext);
+        lookupCollectionByType(applicationContext);         
     }
     
     @Bean
